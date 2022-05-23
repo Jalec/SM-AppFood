@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Login from './pages/login';
@@ -33,14 +33,35 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/select" component={Select} />
-        <Route exact path="/addProduct" component={AddProduct} />
-        <Route exact path="/scanProduct" component={ScanProduct} />
-        <Route exact path="/productDetail" component={ProductDetail} />
+      <IonMenu side="start" contentId="foodappM1">
+        <IonHeader>
+          <IonToolbar color="primary">
+            <IonTitle>FoodApp</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle>
+              <IonItem routerLink="/addProduct" routerDirection='none' lines='none'>
+                <IonLabel>Productor</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            <IonMenuToggle>
+              <IonItem routerLink="/scanProduct" routerDirection='none' lines='none'>
+                <IonLabel>Consumidor</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+
+          </IonList>
+        </IonContent>
+      </IonMenu>
+      <IonRouterOutlet id="foodappM1">
+          <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/select" component={Select} />
+          <Route exact path="/addProduct" component={AddProduct} />
+          <Route exact path="/scanProduct" component={ScanProduct} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
